@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .quantity-input {
+            width: 60px;
+        }
+        body {
+            background: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+
+        .menu-container {
+            text-align: center;
+            margin: 50px;
+        }
+
+        .menu-item {
+            background-color: darkgray;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background: var(--tg-theme-button-text-color);
+            color: var(--tg-theme-button-color);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: var(--tg-theme-secondary-bg-color);
+        }
+    </style>
+</head>
+
+<body class="container">
+    <h1 class="mt-5 mb-4" style="text-align: center;">Menu</h1>
+
+    <form action="/submit-order" method="post">
+        <div class="row menu-item">
+            <div class="col-8">
+                <h5>FastAPI</h5>
+                <p>Доступ к материалам курса по FastAPI</p>
+            </div>
+            <div class="col-4 text-right">
+                <h5>KZT 14999</h5>
+                <label for="item1Quantity">Кол-во:</label>
+                <input type="number" id="item1Quantity" class="quantity-input" name="item1Quantity" min="1" max="99" value="1">
+            </div>
+        </div>
+
+        <div class="row menu-item">
+            <div class="col-8">
+                <h5>Frontend за 30 дней</h5>
+                <p>Курс Frontend за 30 дней</p>
+            </div>
+            <div class="col-4 text-right">
+                <h5>KZT 25000</h5>
+                <label for="item2Quantity">Кол-во:</label>
+                <input type="number" id="item2Quantity" class="quantity-input" name="item2Quantity" min="1" max="99" value="1">
+            </div>
+        </div>
+
+        <div class="row menu-item">
+            <div class="col-8">
+                <h5>Платная консультация на тему карьерного роста в IT</h5>
+                <p>Получите консультацию от профессионала своего дела!</p>
+            </div>
+            <div class="col-4 text-right">
+                <h5>KZT 7500</h5>
+                <label for="item2Quantity">Кол-во:</label>
+                <input type="number" id="item3Quantity" class="quantity-input" name="item3Quantity" min="1" max="99" value="1">
+            </div>
+        </div>
+
+        <div class="row menu-item">
+            <div class="col-8">
+                <h5>Оценка резюме</h5>
+                <p>Расценим резюме и дадим фидбек</p>
+            </div>
+            <div class="col-4 text-right">
+                <h5>KZT 4750</h5>
+                <label for="item2Quantity">Кол-во:</label>
+                <input type="number" id="item4Quantity" class="quantity-input" name="item4Quantity" min="1" max="99" value="1">
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Submit Order</button>
+        </div>
+    </form>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</body>
+
+</html>
