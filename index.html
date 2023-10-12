@@ -111,6 +111,19 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!--    <script>-->
+<!--        let tg = window.Telegram.WebApp;-->
+<!--        tg.expand();-->
+
+<!--        let order = document.getElementById(Айдишка формы которая отправляет оплату или инфы о самом заказе);-->
+<!--        order.addEventListener("click", () =>{-->
+<!--            let uuid = document.getElementById(Айдишка uuid или просто как нибудь передать эту uuid);-->
+<!--            -->
+<!--            let data = {"uuid": uuid}-->
+<!--            tg.sendData(JSON.stringify(data));-->
+<!--            tg.close();-->
+<!--        }-->
+<!--    </script>-->
     <script>
         let tg = window.Telegram.WebApp;
         let order = document.getElementById("btn-submit");
@@ -135,7 +148,6 @@
                               {"name": "Курица терияки с рисом",
                               "price": 1750,
                               "quantity": num4}];
-            console.log(orderData);
 
             tg.sendData(JSON.stringify({"data": orderData}));
             tg.close();

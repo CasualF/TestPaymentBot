@@ -12,6 +12,7 @@ class Settings(BaseSettings):
 
     CREATE_ORDER_URL: str
     MENU_URL: str
+    ORDER_URL: str
 
     class Config:
         env_file = '.env'
