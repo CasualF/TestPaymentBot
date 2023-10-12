@@ -118,25 +118,25 @@
         tg.expand();
 
         order.addEventListener("click", () =>{
-            let num1 = document.getElementById("item1Quantity").value;
-            let num2 = document.getElementById("item2Quantity").value;
-            let num3 = document.getElementById("item3Quantity").value;
-            let num4 = document.getElementById("item4Quantity").value;
+            let num1 = parseInt(document.getElementById("item1Quantity").value);
+            let num2 = parseInt(document.getElementById("item2Quantity").value);
+            let num3 = parseInt(document.getElementById("item3Quantity").value);
+            let num4 = parseInt(document.getElementById("item4Quantity").value);
 
-            let orderData = [{name = Буррито с говядиной,
-                              price = 2300,
-                              quantity: num1},
-                             {name = Ролл «Калифорния»,
-                              price = 2000,
-                              quantity: num2},
-                              {name = Пицца «Пепперони»,
-                              price = 2850,
-                              quantity: num3},
-                              {name = Курица терияки с рисом,
-                              price = 1750,
-                              quantity: num4}];
+            let orderData = [{"name": "Буррито с говядиной",
+                              "price": 2300,
+                              "quantity": num1},
+                             {"name": "Ролл «Калифорния»",
+                              "price": 2000,
+                              "quantity": num2},
+                              {"name": "Пицца «Пепперони»",
+                              "price": 2850,
+                              "quantity": num3},
+                              {"name": "Курица терияки с рисом",
+                              "price": 1750,
+                              "quantity": num4}];
 
-            tg.sendData(JSON.stringify(orderData));
+            tg.sendData(JSON.stringify({data: orderData}));
             tg.close();
         });
     </script>
