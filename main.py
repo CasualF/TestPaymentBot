@@ -31,15 +31,14 @@ class UserState(StatesGroup):
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
     await message.answer_sticker(utils.CAT_STICKER)
-    await message.answer(f"Привет, {hbold(message.from_user.first_name)}! Нажми на меню и выбери что хочешь купить",
-                         reply_markup=utils.create_order_markup)
+    await message.answer(f"Привет, {hbold(message.from_user.first_name)}! Нажми на меню и выбери что хочешь купить")
 
 
 @dp.message(F.filter('web_app_data'))
 async def create_order_handler(message: Message, state: FSMContext):
     await state.set_state(UserState.paying)
     data = json.loads(message.web_app_data.data)
-    await message.answer(data)
+    await message.answer(data, reply_markup=utils.create_order_markup)
 
 
 @dp.message()
