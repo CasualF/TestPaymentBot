@@ -1,14 +1,17 @@
 import requests
 from config import settings
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from main import MyCallback
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+
 
 CAT_STICKER = 'CAACAgUAAxkBAAMTZODxSVrx-Au63rwBN1KalR7coR0AAuIFAAKncZlWsMfRBFaNBHQwBA'
 
+menu_markup = ReplyKeyboardMarkup(keyboard=[[
+    KeyboardButton(text='Menu', web_app=WebAppInfo(url=settings.MENU_URL))
+]])
 
-create_order_markup = ReplyKeyboardMarkup(keyboard=[
-    [KeyboardButton(text='Перейти к оплате 💰')]
-])
+create_order_markup = ReplyKeyboardMarkup(keyboard=[[
+    KeyboardButton(text='Перейти к оплате 💰')
+]])
 
 
 async def create_order(products):
