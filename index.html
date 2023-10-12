@@ -29,7 +29,7 @@
         }
 
         .menu-item {
-            background-color: darkgray;
+            background-color: #ADD8E6;
             padding: 10px;
             margin: 10px;
             border-radius: 5px;
@@ -41,6 +41,9 @@
         }
         .btn-primary:hover {
             background: var(--tg-theme-secondary-bg-color);
+        }
+        p {
+            font-size: 15px;
         }
     </style>
 </head>
@@ -56,9 +59,9 @@
                 <p>Говядина, сыр чеддер, сладкий красный перец, помидоры, перец халапеньо, маринованный лук (лук красный, уксус, сахар, укроп), фирменный соус (сметана, майонез, чеснок, специи), пшеничная тортилья.</p>
             </div>
             <div class="col-4 text-right">
-                <h5>KZT 14999</h5>
+                <h5>KZT 2300</h5>
                 <label for="item1Quantity">Кол-во:</label>
-                <input type="number" id="item1Quantity" class="quantity-input" name="item1Quantity" min="1" max="99" value="1">
+                <input type="number" id="item1Quantity" class="quantity-input" name="item1Quantity" min="0" max="99" value="0">
             </div>
         </div>
 
@@ -71,7 +74,7 @@
             <div class="col-4 text-right">
                 <h5>KZT 2000</h5>
                 <label for="item2Quantity">Кол-во:</label>
-                <input type="number" id="item2Quantity" class="quantity-input" name="item2Quantity" min="1" max="99" value="1">
+                <input type="number" id="item2Quantity" class="quantity-input" name="item2Quantity" min="0" max="99" value="0">
             </div>
         </div>
 
@@ -84,7 +87,7 @@
             <div class="col-4 text-right">
                 <h5>KZT 2850</h5>
                 <label for="item2Quantity">Кол-во:</label>
-                <input type="number" id="item3Quantity" class="quantity-input" name="item3Quantity" min="1" max="99" value="1">
+                <input type="number" id="item3Quantity" class="quantity-input" name="item3Quantity" min="0" max="99" value="0">
             </div>
         </div>
 
@@ -97,7 +100,7 @@
             <div class="col-4 text-right">
                 <h5>KZT 1750</h5>
                 <label for="item2Quantity">Кол-во:</label>
-                <input type="number" id="item4Quantity" class="quantity-input" name="item4Quantity" min="1" max="99" value="1">
+                <input type="number" id="item4Quantity" class="quantity-input" name="item4Quantity" min="0" max="99" value="0">
             </div>
         </div>
 
@@ -108,6 +111,35 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let order = document.getElemetById("submit");
+
+        tg.expand();
+
+        order.addEventListener("click", () =>{
+            let num1 = document.getElementById("item1Quantity").value;
+            let num2 = document.getElementById("item2Quantity").value;
+            let num3 = document.getElementById("item3Quantity").value;
+            let num4 = document.getElementById("item4Quantity").value;
+
+            let orderData = [{name = Буррито с говядиной,
+                              price = 2300,
+                              quantity: num1},
+                             {name = Ролл «Калифорния»,
+                              price = 2000,
+                              quantity: num2},
+                              {name = Пицца «Пепперони»,
+                              price = 2850,
+                              quantity: num3},
+                              {name = Курица терияки с рисом,
+                              price = 1750,
+                              quantity: num4}];
+
+            tg.sendData(JSON.stringify(orderData));
+            tg.close();
+        });
+    </script>
 </body>
 
 </html>

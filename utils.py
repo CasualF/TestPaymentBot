@@ -1,13 +1,13 @@
 import requests
 from config import settings
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from main import MyCallback
 
 CAT_STICKER = 'CAACAgUAAxkBAAMTZODxSVrx-Au63rwBN1KalR7coR0AAuIFAAKncZlWsMfRBFaNBHQwBA'
 
 
-create_order_markup = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Перейти к оплате 💰', callback_data=MyCallback(type='checkout').pack())]
+create_order_markup = ReplyKeyboardMarkup(keyboard=[
+    [KeyboardButton(text='Перейти к оплате 💰')]
 ])
 
 
