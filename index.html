@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <!-- Include Bootstrap CSS -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .quantity-input {
@@ -15,7 +15,14 @@
             background: var(--tg-theme-bg-color);
             color: var(--tg-theme-text-color);
         }
-
+        img {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            max-width: 70%;
+            max-height: 50%;
+            width: auto;
+            height: auto;
+        }
         .menu-container {
             text-align: center;
             margin: 50px;
@@ -44,8 +51,9 @@
     <form action="/submit-order" method="post">
         <div class="row menu-item">
             <div class="col-8">
-                <h5>FastAPI</h5>
-                <p>Доступ к материалам курса по FastAPI</p>
+                <img src="images/burrito-s-govjadinojj-large-rectangular-54a735e50e90478f8c1ae609bfc95d1c.webp" alt="">
+                <h5>Буррито с говядиной</h5>
+                <p>Говядина, сыр чеддер, сладкий красный перец, помидоры, перец халапеньо, маринованный лук (лук красный, уксус, сахар, укроп), фирменный соус (сметана, майонез, чеснок, специи), пшеничная тортилья.</p>
             </div>
             <div class="col-4 text-right">
                 <h5>KZT 14999</h5>
@@ -56,11 +64,12 @@
 
         <div class="row menu-item">
             <div class="col-8">
-                <h5>Frontend за 30 дней</h5>
-                <p>Курс Frontend за 30 дней</p>
+                <img src="images/roll-kalifornija-large-rectangular-79889a88d972498a9abd5717a4a081a0.webp" alt="">
+                <h5>Ролл «Калифорния»</h5>
+                <p>Снежный краб, рис, водоросли нори, авокадо, огурец свежий, икра масаго оранжевая.</p>
             </div>
             <div class="col-4 text-right">
-                <h5>KZT 25000</h5>
+                <h5>KZT 2000</h5>
                 <label for="item2Quantity">Кол-во:</label>
                 <input type="number" id="item2Quantity" class="quantity-input" name="item2Quantity" min="1" max="99" value="1">
             </div>
@@ -68,11 +77,12 @@
 
         <div class="row menu-item">
             <div class="col-8">
-                <h5>Платная консультация на тему карьерного роста в IT</h5>
-                <p>Получите консультацию от профессионала своего дела!</p>
+                <img src="images/picca-pepperoni-30-sm-large-rectangular-b544ef0cb2c446b7aa119ece08ae044d.webp" alt="">
+                <h5>Пицца «Пепперони»</h5>
+                <p>Колбаса пепперони, молокосодержащий продукт «Моцарелла», содержит растительные масла, перец халапеньо маринованный, соус томатный, тесто дрожжевое, мука в/с из твердых сортов пшеницы.</p>
             </div>
             <div class="col-4 text-right">
-                <h5>KZT 7500</h5>
+                <h5>KZT 2850</h5>
                 <label for="item2Quantity">Кол-во:</label>
                 <input type="number" id="item3Quantity" class="quantity-input" name="item3Quantity" min="1" max="99" value="1">
             </div>
@@ -80,18 +90,19 @@
 
         <div class="row menu-item">
             <div class="col-8">
-                <h5>Оценка резюме</h5>
-                <p>Расценим резюме и дадим фидбек</p>
+                <img src="images/ris-s-kuricejj-terijaki-large-rectangular-5c569d8fde9644a197932e514f69c688.webp" alt="">
+                <h5>Курица терияки с рисом</h5>
+                <p>Рис, курица, красный болгарский перец, репчатый лук, морковь, соус терияки, зеленый лук, белый кунжут.</p>
             </div>
             <div class="col-4 text-right">
-                <h5>KZT 4750</h5>
+                <h5>KZT 1750</h5>
                 <label for="item2Quantity">Кол-во:</label>
                 <input type="number" id="item4Quantity" class="quantity-input" name="item4Quantity" min="1" max="99" value="1">
             </div>
         </div>
 
         <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Submit Order</button>
+            <button type="submit" class="btn btn-primary">Заказать</button>
         </div>
     </form>
 
