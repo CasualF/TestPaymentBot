@@ -1,4 +1,4 @@
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
@@ -12,6 +12,7 @@ import sys
 import logging
 import asyncio
 import utils
+import json
 from config import settings
 
 storage = MemoryStorage()
@@ -34,11 +35,11 @@ async def command_start_handler(message: Message) -> None:
                          reply_markup=utils.create_order_markup)
 
 
-@dp.callback_query(lambda query: query.data == 'my:checkout')
-async def create_order_handler(query: CallbackQuery, state: FSMContext):
+@dp.message(F.filter('web_app_data'))
+async def create_order_handler(message: Message, state: FSMContext):
     await state.set_state(UserState.paying)
-    curr_state = await state.get_state()
-    await bot.send_message(text=curr_state, chat_id=query.from_user.id)
+    data = json.loads(message.web_app_data.data)
+    await message.answer(data)
 
 
 @dp.message()
