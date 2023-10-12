@@ -105,7 +105,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Заказать</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit">Заказать</button>
         </div>
     </form>
 
@@ -113,7 +113,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
-        let order = document.getElemetById("btn");
+        let order = document.getElemetById("btn-submit");
 
         tg.expand();
 
