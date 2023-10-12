@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN: str
 
     CREATE_ORDER_URL: str
+    MENU_URL: str
 
     class Config:
         env_file = '.env'
