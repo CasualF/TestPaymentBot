@@ -5,7 +5,7 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 from aiogram.utils.markdown import hbold
 from aiohttp import ClientSession
 
@@ -67,9 +67,10 @@ async def make_payment(query: CallbackData, state: FSMContext):
                 checkout_url = response.get('checkout_url')
                 markup = utils.get_checkout_web_app(checkout_url.replace('http', 'https'))
                 if checkout_url is not None:
-                    # await state.update_data({'uuid': response.get('uuid')})
+                    await state.update_data({'uuid': response.get('uuid')})
                     await bot.send_message(chat_id=query.from_user.id,
-                                           text=f'Заказ оформлен!\nОплатите кнопкой ниже 👇',
+                                           text=f'Заказ оформлен!\nОплатите кнопкой ниже 👇\n'
+                                                f'После оплаты можете проверить заказ командой\n /check_order',
                                            reply_markup=markup)
             else:
                 await bot.send_message(chat_id=query.from_user.id,
@@ -77,30 +78,35 @@ async def make_payment(query: CallbackData, state: FSMContext):
                                        reply_markup=utils.menu_markup)
 
 
-@dp.message(F.web_app_data.data.get('uuid'))
+@dp.message(Command('check_order'))
 async def checkout_pay(message: Message, state: FSMContext):
     async with ClientSession() as session:
-        data = json.loads(message.web_app_data.data)
-        uuid = data["uuid"]
-        url = settings.ORDER_URL + uuid
-        async with session.post(url=url) as response:
-            response = await response.json()
-            if response.get('status') == 'PAID':
-                await state.clear()
-                await message.answer(text='Заказ оплачен успешно!',
-                                     reply_markup=utils.menu_markup)
-            else:
-                await message.answer(text='Заказ не был оплачен.',
-                                     reply_markup=utils.menu_markup)
+        uuid = await state.get_data()
+        if uuid.get('uuid'):
+            url = settings.ORDER_URL + uuid.get('uuid')
+            async with session.get(url=url) as response:
+                response = await response.json()
+                if response.get('status') == 'PAID':
+                    await state.clear()
+                    await message.answer(text='Заказ оплачен успешно!',
+                                         reply_markup=utils.menu_markup)
+                else:
+                    await message.answer(text='Заказ не оплачен.')
+        else:
+            await message.answer('У вас нет заказов! \nЧтобы оформить заказ нажмите на меню 👇',
+                                 reply_markup=utils.menu_markup)
 
 
 @dp.message(F.text == '❌ Выход')
-async def exit_bot(message: types.Message):
-    await message.reply('Пока! \nЧтобы запустить заново -> /start', reply_markup=types.ReplyKeyboardRemove())
+async def exit_bot(message: Message, state: FSMContext):
+    await state.clear()
+    await message.reply(text='Пока! \nЧтобы запустить заново -> /start',
+                        reply_markup=types.ReplyKeyboardRemove())
 
 
 @dp.callback_query(F.data == 'exit')
-async def exit_bot_inline(query: CallbackData):
+async def exit_bot_inline(query: CallbackData, state: FSMContext):
+    await state.clear()
     await bot.send_message(chat_id=query.from_user.id,
                            text='Пока! \nЧтобы запустить заново -> /start',
                            reply_markup=types.ReplyKeyboardRemove())
